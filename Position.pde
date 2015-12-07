@@ -2,7 +2,6 @@ import java.util.Map;
 
 public class Position {
   public PVector vector;
-  private boolean drawn;
   public float radius;
 
   public Position(PVector vector, float radius) {
@@ -11,25 +10,19 @@ public class Position {
   }
 
   public void DrawSphere() {
-    if (!drawn) {
-      fill(255, 0, 0, 75);
-      noStroke();
-      translate(vector.x, vector.y, vector.z);
-      sphere(radius);
-      fill(0);
-      stroke(0);
-      drawn = true;
-    }
+    noStroke();
+    fill(200, 0, 0, 75);
+    pushMatrix();
+    translate(vector.x, vector.y, vector.z);
+
+    sphere(radius);
+    popMatrix();
   }
 
   public void DrawEllipse() {
-    if (!drawn) {
-      fill(random(0,255), random(0,255), random(0,255), 75);
-      noStroke();
-      ellipse(vector.x, vector.y, radius, radius);
-      point(vector.x, vector.y);
-      fill(0);
-      drawn = true;
-    }
+    pushMatrix();
+    translate(vector.x, vector.y, vector.z);
+    ellipse(vector.x, vector.y, radius, radius);
+    popMatrix();
   }
 }
